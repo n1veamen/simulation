@@ -1,14 +1,9 @@
 package core;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
-import entityPack.CreaturePack.Creature;
 import entityPack.CreaturePack.Herbivore;
 import entityPack.CreaturePack.Predator;
-import entityPack.Entity;
 import entityPack.Grass;
 import entityPack.Rock;
 import entityPack.Tree;
@@ -22,6 +17,7 @@ public class Simulation {
         initActions(25, 25, 15);
         System.out.println("Принт карты:");
         GameMap.printMap();
+        PathFinder a = new PathFinder();
     }
 
     public static void startSimulation() {
