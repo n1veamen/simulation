@@ -13,7 +13,7 @@ public class GameMap {
 
     private static String[][] map;
 
-    private static ArrayList<Herbivore> hebrivoresOnMap = new ArrayList();
+    private static ArrayList<Herbivore> herbivoresOnMap = new ArrayList();
     private static ArrayList<Predator> predatorsOnMap= new ArrayList();
     private static ArrayList<Grass> grassOnMap = new ArrayList();
     private static ArrayList<Entity> entityOnMap = new ArrayList();
@@ -28,11 +28,11 @@ public class GameMap {
         predatorsOnMap.add(a);
     }
     public static void addEntityToMap(Herbivore a) {
-        hebrivoresOnMap.add(a);
+        herbivoresOnMap.add(a);
     }
 
-    public static ArrayList<Herbivore> getAllHebrivore() {
-        return new ArrayList<>(hebrivoresOnMap);
+    public static ArrayList<Herbivore> getAllHerbivore() {
+        return new ArrayList<>(herbivoresOnMap);
     }
     public static ArrayList<Predator> getAllPredator() {
         return new ArrayList<>(predatorsOnMap);

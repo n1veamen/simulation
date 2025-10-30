@@ -34,5 +34,7 @@ public abstract class Entity {
         }
         //доабвление координат в массив занятых координат.
         GameMap.addCoordinate(coordinate);
+        //добавление обьекта в нужный массив смотря на то какого класса обьект попадает в этот метод.
+        GameMap.addEntityToMap(this);
     }
 }

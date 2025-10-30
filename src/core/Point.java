@@ -1,8 +1,8 @@
 package core;
 
 public class Point {
-    int x;
-    int y;
+    private int x;
+    private int y;
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
@@ -10,6 +10,11 @@ public class Point {
 
     public int[] getCoordinate() {
         return new int[]{x, y};
+    }
+
+    public void setCoordinate(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public Point up() {
@@ -38,6 +43,6 @@ public class Point {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return hashCode();
     }
 }

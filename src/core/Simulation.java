@@ -8,16 +8,12 @@ import entityPack.Grass;
 import entityPack.Rock;
 import entityPack.Tree;
 
-import static java.lang.Math.round;
-
 public class Simulation {
     static Random random = new Random();
 
     public static void main(String[] args) {
-        initActions(25, 25, 15);
-        System.out.println("Принт карты:");
+        initActions(10, 10, 20);
         GameMap.printMap();
-        PathFinder a = new PathFinder();
     }
 
     public static void startSimulation() {
@@ -42,7 +38,7 @@ public class Simulation {
     }
 
     public static void turnActions() {
-        for (Herbivore a : GameMap.getAllHebrivore()) {
+        for (Herbivore a : GameMap.getAllHerbivore()) {
             a.makeMove();
         }
         GameMap.printMap();

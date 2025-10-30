@@ -8,12 +8,11 @@ public abstract class Creature extends Entity {
 
     public Creature(String type) {
         super(type);
+
+
     }
 
-    public static void makeMove() {
-        int moveY;
-        int moveX;
-        //this.coordinate[0] += moveX;
-        //this.coordinate[1] += moveY;
+    public void makeMove() {
+        
     }
 }
