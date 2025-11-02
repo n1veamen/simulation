@@ -17,36 +17,64 @@ public class GameMap {
     private static ArrayList<Predator> predatorsOnMap= new ArrayList();
     private static ArrayList<Grass> grassOnMap = new ArrayList();
     private static ArrayList<Entity> entityOnMap = new ArrayList();
+    private static ArrayList<Creature> creatureOnMap = new ArrayList();
 
-    public static void addEntityToMap(Entity a) {
-        entityOnMap.add(a);
+    public static void addEntityToMap(Entity e) {
+        entityOnMap.add(e);
+
+        if (e instanceof Grass) {
+            grassOnMap.add((Grass) e);
+        } else if (e instanceof Predator) {
+            predatorsOnMap.add((Predator) e);
+        } else if (e instanceof Herbivore) {
+            herbivoresOnMap.add((Herbivore) e);
+        } else if (e instanceof Creature) {
+            creatureOnMap.add((Creature) e);
+        }
     }
-    public static void addEntityToMap(Grass a) {
-        grassOnMap.add(a);
-    }
-    public static void addEntityToMap(Predator a) {
-        predatorsOnMap.add(a);
-    }
-    public static void addEntityToMap(Herbivore a) {
-        herbivoresOnMap.add(a);
+
+    public static void delEntityFromMap(Entity e) {
+        entityOnMap.remove(e);
+
+        if (e instanceof Grass) {
+            grassOnMap.remove((Grass) e);
+        } else if (e instanceof Predator) {
+            predatorsOnMap.remove((Predator) e);
+        } else if (e instanceof Herbivore) {
+            herbivoresOnMap.remove((Herbivore) e);
+        } else if (e instanceof Creature) {
+            creatureOnMap.remove((Creature) e);
+        }
     }
 
     public static ArrayList<Herbivore> getAllHerbivore() {
-        return new ArrayList<>(herbivoresOnMap);
+        return herbivoresOnMap;
     }
     public static ArrayList<Predator> getAllPredator() {
-        return new ArrayList<>(predatorsOnMap);
+        return predatorsOnMap;
     }
     public static ArrayList<Entity> getAllEntity() {
-        return new ArrayList<>(entityOnMap);
+        return entityOnMap;
     }
     public static ArrayList<Grass> getAllGrass() {
-        return new ArrayList<>(grassOnMap);
+        return grassOnMap;
+    }
+    public static ArrayList<Creature> getAllCreature() {
+        return creatureOnMap;
     }
 
     public GameMap(int[] mapSize) {
         map = new String[mapSize[0]][mapSize[1]];
         System.out.println("конструктор мапы вызван");
+    }
+
+    public static void clearMap() {
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                map[i][j] = null;
+            }
+        }
+        System.out.println("✅ Карта полностью очищена!");
     }
 
     public static int[] getMapSize() {
@@ -57,6 +85,15 @@ public class GameMap {
 
     public static void placeEntity(int[] coordinate, String entity) {
         map[coordinate[1]][coordinate[0]] = entity;
+
+        int x = coordinate[0];
+        int y = coordinate[1];
+
+        // 🔒 защита от выхода за границы
+        if (x < 0 || y < 0 || x >= getMapSize()[0] || y >= getMapSize()[1]) {
+            System.out.println("⚠️ Ошибка: попытка разместить за границами карты (" + x + "," + y + ")");
+            return;
+        }
     }
 
     public static void printMap() {
@@ -72,20 +109,15 @@ public class GameMap {
             }
             System.out.println();
         }
+        System.out.println("карта запринтилась");
     }
 
-    private static List<int[]> entitiesOnMap = new ArrayList<>();
-
     public static boolean isFree(int[] coordinate) {
-        for (int i = 0; i < entitiesOnMap.size(); i++) {
-            if (Arrays.equals(coordinate, entitiesOnMap.get(i))) {
+        for (int i = 0; i < entityOnMap.size(); i++) {
+            if (Arrays.equals(coordinate, entityOnMap.get(i).getCoordinate())) {
                 return false;
             }
         }
         return true;
-    }
-
-    public static void addCoordinate(int[] coordinate) {
-        entitiesOnMap.add(coordinate);
     }
 }

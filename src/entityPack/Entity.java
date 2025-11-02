@@ -15,6 +15,14 @@ public abstract class Entity {
         return coordinate;
     }
 
+    public void delEntityFromMap(Entity e) {
+        GameMap.delEntityFromMap(e);
+    }
+
+    public String getType() {
+        return type;
+    }
+
     public Entity(String type) {
         this.type = type;
         while (true) {
@@ -32,9 +40,8 @@ public abstract class Entity {
                 System.out.println("неудалось разместить исфри не сработал");
             }
         }
-        //доабвление координат в массив занятых координат.
-        GameMap.addCoordinate(coordinate);
-        //добавление обьекта в нужный массив смотря на то какого класса обьект попадает в этот метод.
+
+        //добавление обьекта в нужный массив смотря какого класса обьект попадает в этот метод.
         GameMap.addEntityToMap(this);
     }
 }
