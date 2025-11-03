@@ -35,6 +35,8 @@ public class Simulation {
         new GameMap(new int[]{height, width});
         for (int i = 0; i < (height * width * fullness) / 5; i++) {
             new Grass();
+            new Rock();
+            new Rock();
             GameMap.addEntityToMap(new Herbivore(50, 2));
             GameMap.addEntityToMap(new Predator(10,100, 1));
         }

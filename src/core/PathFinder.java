@@ -12,8 +12,8 @@ public class PathFinder {
     public static Point findNearestEntity(Entity entityStart) {
 
         Point target = new Point(0,0);
-        int x = -1;
-        int y = -1;
+        int x = 0;
+        int y = 0;
 
         int[] start = entityStart.getCoordinate();
         if (entityStart instanceof Herbivore) {
@@ -35,18 +35,18 @@ public class PathFinder {
             }
         }
         if (entityStart instanceof Predator) {
-            if (GameMap.getAllHerbivore().isEmpty()) {
+            if (GameMap.getAllGrass().isEmpty()) {
                 return null;
             } else {
                 int tempDistanse = 10000;
-                ArrayList<Herbivore> HebrivoreArrayList = GameMap.getAllHerbivore();
-                for (Herbivore n : HebrivoreArrayList) {
-                    int[] grassCoordinate = n.getCoordinate();
-                    int grassDistance = Math.abs(grassCoordinate[0] + grassCoordinate[1]);
-                    if (tempDistanse > grassDistance) {
-                        tempDistanse = grassDistance;
-                        x = grassCoordinate[0];
-                        y = grassCoordinate[1];
+                ArrayList<Herbivore> hebrivoreArrayList = GameMap.getAllHerbivore();
+                for (Herbivore n : hebrivoreArrayList) {
+                    int[] hebrivoreCoordinate = n.getCoordinate();
+                    int hebrivoreDistance = Math.abs(start[0] - hebrivoreCoordinate[0]) + Math.abs(start[1] - hebrivoreCoordinate[1]);
+                    if (tempDistanse > hebrivoreDistance) {
+                        tempDistanse = hebrivoreDistance;
+                        x = hebrivoreCoordinate[0];
+                        y = hebrivoreCoordinate[1];
                     }
                 }
             }
